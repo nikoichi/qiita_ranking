@@ -25,7 +25,12 @@ module QiitaRanking
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.javascripts false
+      g.stylesheets false
+      g.template_engine :slim
+      g.test_framework :rspec, view_specs: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
   end
 end
