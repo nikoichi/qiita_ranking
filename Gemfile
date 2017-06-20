@@ -24,9 +24,19 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'slim-rails'
+gem 'mysql2'
+gem 'compass-rails'            # Sassの機能拡張
+gem 'coffee-rails'             # JavaScriptを簡潔に書ける
+gem 'jquery-rails'             # jQueryが使える
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'            # RailsでRspecが使える
+  gem 'factory_girl_rails'     # テストデータの生成
+  gem 'database_cleaner'       # テスト実行後にDBをクリア
+  gem 'capybara'               # ブラウザでの操作をシミュレートしてテストができる
 end
 
 group :development do
@@ -36,6 +46,16 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'                 # 余計なSQLを検出できる
+  # debug
+  gem 'better_errors'          # エラー画面を見やすくする
+  gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
+  gem 'tapp'                   # プリントデバッグがしやすくなる
+  gem 'pry-rails'              # railsでpryが使える
+  gem 'pry-byebug'             # pryでデバックコマンドが使える
+  gem 'awesome_print'          # プリントデバッグの出力を整形
+  gem 'hirb'                   # SQLの結果を見やすく整形してくれる
+  gem 'hirb-unicode'           # hirbの日本語対応
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
