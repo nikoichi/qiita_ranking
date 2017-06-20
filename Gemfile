@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'     # テストデータの生成
   gem 'database_cleaner'       # テスト実行後にDBをクリア
   gem 'capybara'               # ブラウザでの操作をシミュレートしてテストができる
+  gem 'rails-erd'  # ER図を生成するためのgem
 end
 
 group :development do
