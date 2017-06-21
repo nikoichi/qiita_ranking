@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621075019) do
+ActiveRecord::Schema.define(version: 20170621080917) do
+
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "qiita_item_id", null: false
+    t.string "title", null: false
+    t.bigint "qiita_user_id", null: false
+    t.string "url", null: false
+    t.boolean "is_private", default: false, null: false
+    t.text "description"
+    t.datetime "qiita_created_at", null: false
+    t.datetime "qiita_updated_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["qiita_item_id"], name: "index_items_on_qiita_item_id", unique: true
+    t.index ["qiita_user_id"], name: "index_items_on_qiita_user_id"
+  end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -44,5 +60,6 @@ ActiveRecord::Schema.define(version: 20170621075019) do
     t.index ["permanent_id"], name: "index_qiita_users_on_permanent_id", unique: true
   end
 
+  add_foreign_key "items", "qiita_users"
   add_foreign_key "qiita_users", "organizations"
 end
