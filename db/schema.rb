@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621093516) do
+ActiveRecord::Schema.define(version: 20170621094254) do
 
   create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "item_id", null: false
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170621093516) do
     t.datetime "deleted_at"
     t.index ["qiita_item_id"], name: "index_items_on_qiita_item_id", unique: true
     t.index ["qiita_user_id"], name: "index_items_on_qiita_user_id"
+  end
+
+  create_table "like_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "like_total_count", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_like_total_counts_on_item_id"
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170621093516) do
   add_foreign_key "item_qiita_tags", "items"
   add_foreign_key "item_qiita_tags", "qiita_tags"
   add_foreign_key "items", "qiita_users"
+  add_foreign_key "like_total_counts", "items"
   add_foreign_key "qiita_user_stocks", "items"
   add_foreign_key "qiita_user_stocks", "qiita_users"
   add_foreign_key "qiita_users", "organizations"
