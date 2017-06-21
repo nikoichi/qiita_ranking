@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621094656) do
+ActiveRecord::Schema.define(version: 20170621094918) do
 
   create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "item_id", null: false
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20170621094656) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "qiita_tag_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "qiita_tag_id", null: false
+    t.string "error_message"
+    t.string "error_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["qiita_tag_id"], name: "index_qiita_tag_error_logs_on_qiita_tag_id"
   end
 
   create_table "qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -131,6 +140,7 @@ ActiveRecord::Schema.define(version: 20170621094656) do
   add_foreign_key "item_qiita_tags", "qiita_tags"
   add_foreign_key "items", "qiita_users"
   add_foreign_key "like_total_counts", "items"
+  add_foreign_key "qiita_tag_error_logs", "qiita_tags"
   add_foreign_key "qiita_user_error_logs", "qiita_users"
   add_foreign_key "qiita_user_stocks", "items"
   add_foreign_key "qiita_user_stocks", "qiita_users"
