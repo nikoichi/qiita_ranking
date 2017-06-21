@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621084237) do
+ActiveRecord::Schema.define(version: 20170621085424) do
+
+  create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "item_id", null: false
+    t.bigint "qiita_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["item_id"], name: "index_item_qiita_tags_on_item_id"
+    t.index ["qiita_tag_id"], name: "index_item_qiita_tags_on_qiita_tag_id"
+  end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "qiita_item_id", null: false
@@ -72,6 +82,8 @@ ActiveRecord::Schema.define(version: 20170621084237) do
     t.index ["permanent_id"], name: "index_qiita_users_on_permanent_id", unique: true
   end
 
+  add_foreign_key "item_qiita_tags", "items"
+  add_foreign_key "item_qiita_tags", "qiita_tags"
   add_foreign_key "items", "qiita_users"
   add_foreign_key "qiita_users", "organizations"
 end
