@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621091045) do
+ActiveRecord::Schema.define(version: 20170621093516) do
 
   create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "item_id", null: false
@@ -92,10 +92,19 @@ ActiveRecord::Schema.define(version: 20170621091045) do
     t.index ["permanent_id"], name: "index_qiita_users_on_permanent_id", unique: true
   end
 
+  create_table "stock_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "stock_total_count", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_stock_total_counts_on_item_id"
+  end
+
   add_foreign_key "item_qiita_tags", "items"
   add_foreign_key "item_qiita_tags", "qiita_tags"
   add_foreign_key "items", "qiita_users"
   add_foreign_key "qiita_user_stocks", "items"
   add_foreign_key "qiita_user_stocks", "qiita_users"
   add_foreign_key "qiita_users", "organizations"
+  add_foreign_key "stock_total_counts", "items"
 end
