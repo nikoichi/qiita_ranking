@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621080917) do
+ActiveRecord::Schema.define(version: 20170621084237) do
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "qiita_item_id", null: false
@@ -33,6 +33,18 @@ ActiveRecord::Schema.define(version: 20170621080917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "icon_url"
+    t.integer "items_count", null: false
+    t.integer "followers_count", null: false
+    t.boolean "items_is_got", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["name"], name: "index_qiita_tags_on_name", unique: true
   end
 
   create_table "qiita_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
