@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621094254) do
+ActiveRecord::Schema.define(version: 20170621094514) do
+
+  create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "item_id", null: false
+    t.string "error_message"
+    t.string "error_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_error_logs_on_item_id"
+  end
 
   create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "item_id", null: false
@@ -108,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170621094254) do
     t.index ["item_id"], name: "index_stock_total_counts_on_item_id"
   end
 
+  add_foreign_key "item_error_logs", "items"
   add_foreign_key "item_qiita_tags", "items"
   add_foreign_key "item_qiita_tags", "qiita_tags"
   add_foreign_key "items", "qiita_users"
