@@ -5,9 +5,9 @@ class CreateQiitaUsers < ActiveRecord::Migration[5.1]
       t.integer :permanent_id, null: false
       t.string :name
       t.string :facebook_id
-      t.string :github_id
+      t.string :github_login_name
       t.string :linkedin_id
-      t.string :twitter_screen_id
+      t.string :twitter_screen_name
       t.references :organization, foreign_key: true
       t.string :profile_image_url
       t.string :website_url

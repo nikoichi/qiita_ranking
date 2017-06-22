@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 20170621094918) do
     t.integer "permanent_id", null: false
     t.string "name"
     t.string "facebook_id"
-    t.string "github_id"
+    t.string "github_login_name"
     t.string "linkedin_id"
-    t.string "twitter_screen_id"
+    t.string "twitter_screen_name"
     t.bigint "organization_id"
     t.string "profile_image_url"
     t.string "website_url"
