@@ -29,6 +29,7 @@ gem 'mysql2'
 gem 'compass-rails'            # Sassの機能拡張
 gem 'coffee-rails'             # JavaScriptを簡潔に書ける
 gem 'jquery-rails'             # jQueryが使える
+gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
