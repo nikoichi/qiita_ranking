@@ -144,6 +144,5 @@ ActiveRecord::Schema.define(version: 20170621094918) do
   add_foreign_key "qiita_user_error_logs", "qiita_users"
   add_foreign_key "qiita_user_stocks", "items"
   add_foreign_key "qiita_user_stocks", "qiita_users"
-  add_foreign_key "qiita_users", "organizations"
   add_foreign_key "stock_total_counts", "items"
 end

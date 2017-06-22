@@ -8,7 +8,7 @@ class CreateQiitaUsers < ActiveRecord::Migration[5.1]
       t.string :github_login_name
       t.string :linkedin_id
       t.string :twitter_screen_name
-      t.references :organization, foreign_key: true
+      t.references :organization
       t.string :profile_image_url
       t.string :website_url
       t.string :location
