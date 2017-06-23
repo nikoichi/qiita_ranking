@@ -10,7 +10,7 @@ namespace :qiita_api do
     tag_names = args.name.split('#')
     tag_names.each do |tag_name|
       response = client.get_tag(tag_name)
-      p response_tag = response.body
+      response_tag = response.body
       QiitaTag.update_or_create(response_tag)
       # TODO: 例外処理記載
       p response.headers
@@ -23,7 +23,7 @@ namespace :qiita_api do
     client = make_client
     user_name = args.name
     response = client.get_user(user_name)
-    p response_user = response.body
+    response_user = response.body
     QiitaUser.update_or_create(response_user)
     # TODO: 例外処理記載
     p response.headers
@@ -35,7 +35,20 @@ namespace :qiita_api do
     client = make_client
     item_id = args.id
     response = client.get_item(item_id)
-    p response_item = response.body
+    response_item = response.body
     Item.update_or_create(response_item)
+  end
+
+  desc 'qiitaの最新の投稿を取得'
+  task get_latest_items: :environment do
+    client = make_client
+    response = client.list_items(page: 1, per_page: 100)
+    response_items = response.body
+    response_items.each do |response_item|
+      Item.update_or_create(response_item)
+    end
+    # TODO: 例外処理記載
+    p response.headers
+    p response.status
   end
 end
