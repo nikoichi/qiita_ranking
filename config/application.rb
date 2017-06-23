@@ -38,5 +38,9 @@ module QiitaRanking
         request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
+    # timezoneの設定
+    config.active_record.default_timezone = :local
+    config.time_zone = 'Tokyo'
   end
 end
