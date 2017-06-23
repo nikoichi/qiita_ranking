@@ -3,17 +3,10 @@ namespace :qiita_api do
     Qiita::Client.new(access_token: ENV['QIITA_ACCESS_TOKEN'])
   end
 
-  # TODO: 例外処理記載
-  def make_tag_params(body)
-    # キー'id'を'name'にリネーム
-    body['name'] = body.delete('id')
-    body
-  end
-
   def update_or_create_tag(client, tag)
     response = client.get_tag(tag)
     body = response.body
-    tag_params = make_tag_params(body)
+    tag_params = QiitaTag.make_params(body)
     qiita_tag = QiitaTag.find_or_initialize_by(name: tag_params['name'])
     qiita_tag.update!(tag_params)
     # TODO: 例外処理記載
