@@ -10,8 +10,8 @@ namespace :qiita_api do
     tag_names = args.name.split('#')
     tag_names.each do |tag_name|
       response = client.get_tag(tag_name)
-      p response_tag_params = response.body
-      QiitaTag.update_or_create(response_tag_params)
+      p response_tag = response.body
+      QiitaTag.update_or_create(response_tag)
       # TODO: 例外処理記載
       p response.headers
       p response.status
@@ -23,8 +23,8 @@ namespace :qiita_api do
     client = make_client
     user_name = args.name
     response = client.get_user(user_name)
-    p response_user_params = response.body
-    QiitaUser.update_or_create(response_user_params)
+    p response_user = response.body
+    QiitaUser.update_or_create(response_user)
     # TODO: 例外処理記載
     p response.headers
     p response.status
@@ -35,7 +35,7 @@ namespace :qiita_api do
     client = make_client
     item_id = args.id
     response = client.get_item(item_id)
-    p response_item_params = response.body
-    Item.update_or_create(response_item_params)
+    p response_item = response.body
+    Item.update_or_create(response_item)
   end
 end
