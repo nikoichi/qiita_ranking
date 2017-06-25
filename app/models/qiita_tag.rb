@@ -22,11 +22,11 @@ class QiitaTag < ApplicationRecord
       if qiita_tag.blank?
         client = Qiita::Client.new(access_token: ENV['QIITA_ACCESS_TOKEN'])
         response = client.get_tag(qiita_tag_name)
-        p response_tag = response.body
+        ap response_tag = response.body
         qiita_tag = update_or_create(response_tag)
         # TODO: 例外処理記載
-        p response.headers
-        p response.status
+        ap response.headers
+        ap response.status
       end
       qiita_tag.id
     end

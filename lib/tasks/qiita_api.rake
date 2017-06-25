@@ -13,8 +13,8 @@ namespace :qiita_api do
       response_tag = response.body
       QiitaTag.update_or_create(response_tag)
       # TODO: 例外処理記載
-      p response.headers
-      p response.status
+      ap response.headers
+      ap response.status
     end
   end
 
@@ -26,8 +26,8 @@ namespace :qiita_api do
     response_user = response.body
     QiitaUser.update_or_create(response_user)
     # TODO: 例外処理記載
-    p response.headers
-    p response.status
+    ap response.headers
+    ap response.status
   end
 
   desc '指定した投稿を取得'
@@ -47,11 +47,11 @@ namespace :qiita_api do
       response = client.list_items(page: i + 1, per_page: 1)
       response_items = response.body
       response_items.each do |response_item|
-        p Item.update_or_create(response_item)
+        ap Item.update_or_create(response_item)
       end
       # TODO: 例外処理記載
-      p response.headers
-      p response.status
+      ap response.headers
+      ap response.status
     end
   end
 
@@ -67,11 +67,11 @@ namespace :qiita_api do
         response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
         response_items = response.body
         response_items.each do |response_item|
-          p Item.update_or_create(response_item)
+          ap Item.update_or_create(response_item)
         end
         # TODO: 例外処理記載
-        p response.headers
-        p response.status
+        ap response.headers
+        ap response.status
       end
     end
   end
