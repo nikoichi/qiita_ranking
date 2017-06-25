@@ -51,4 +51,25 @@ namespace :qiita_api do
     p response.headers
     p response.status
   end
+
+  desc '指定したタグの投稿を取得(引数は#で区切って複数記述可)'
+  task :get_tag_items, ['qiita_tag_ids'] => :environment do |_task, args|
+    client = make_client
+    # 引数に#で区切った複数の名前を指定できるような処理とした
+    qiita_tag_ids = args.qiita_tag_ids.split('#').map(&:to_i)
+    qiita_tag_ids.each do |qiita_tag_id|
+      qiita_tag = QiitaTag.find(qiita_tag_id)
+      # FIXME: あとで100に変える。per_pageも。
+      1.times do |i|
+        response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
+        response_items = response.body
+        response_items.each do |response_item|
+          Item.update_or_create(response_item)
+        end
+        # TODO: 例外処理記載
+        p response.headers
+        p response.status
+      end
+    end
+  end
 end

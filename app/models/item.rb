@@ -7,8 +7,8 @@ class Item < ApplicationRecord
   # qiita_tagと中間テーブルも同時にupdate。qiita_tagがない場合はcreateする。
   def self.update_or_create(response_item)
     item_params = make_params(response_item)
-    item = Item.find_or_initialize_by(qiita_item_id: response_item['qiita_item_id'])
-    item.update!(response_item)
+    item = Item.find_or_initialize_by(qiita_item_id: item_params['qiita_item_id'])
+    item.update!(item_params)
   end
 
   def self.make_params(response_item)
@@ -30,5 +30,6 @@ class Item < ApplicationRecord
     # tagsを消去&タグがない場合はcreate
     qiita_tag_names = response_item.delete('tags').map { |tag| tag['name'] }
     response_item['qiita_tag_ids'] = QiitaTag.get_tag_ids(qiita_tag_names)
+    response_item
   end
 end
