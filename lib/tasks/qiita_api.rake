@@ -75,4 +75,25 @@ namespace :qiita_api do
       end
     end
   end
+
+  desc '指定したユーザーの投稿を取得(引数は#で区切って複数記述可)'
+  task :get_user_items, ['qiita_user_ids'] => :environment do |_task, args|
+    client = make_client
+    # 引数に#で区切った複数の名前を指定できるような処理とした
+    qiita_user_ids = args.qiita_user_ids.split('#').map(&:to_i)
+    qiita_user_ids.each do |qiita_user_id|
+      qiita_user = QiitaUser.find(qiita_user_id)
+      # FIXME: あとで100に変える。per_pageも。
+      1.times do |i|
+        response = client.list_user_items(qiita_user.nickname, { page: i + 1, per_page: 1 })
+        response_items = response.body
+        response_items.each do |response_item|
+          ap Item.update_or_create(response_item)
+        end
+        # TODO: 例外処理記載
+        ap response.headers
+        ap response.status
+      end
+    end
+  end
 end
