@@ -42,14 +42,17 @@ namespace :qiita_api do
   desc 'qiitaの最新の投稿を取得'
   task get_latest_items: :environment do
     client = make_client
-    response = client.list_items(page: 1, per_page: 100)
-    response_items = response.body
-    response_items.each do |response_item|
-      Item.update_or_create(response_item)
+    # FIXME: あとで100に変える。per_pageも。
+    1.times do |i|
+      response = client.list_items(page: i + 1, per_page: 1)
+      response_items = response.body
+      response_items.each do |response_item|
+        p Item.update_or_create(response_item)
+      end
+      # TODO: 例外処理記載
+      p response.headers
+      p response.status
     end
-    # TODO: 例外処理記載
-    p response.headers
-    p response.status
   end
 
   desc '指定したタグの投稿を取得(引数は#で区切って複数記述可)'
@@ -64,7 +67,7 @@ namespace :qiita_api do
         response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
         response_items = response.body
         response_items.each do |response_item|
-          Item.update_or_create(response_item)
+          p Item.update_or_create(response_item)
         end
         # TODO: 例外処理記載
         p response.headers

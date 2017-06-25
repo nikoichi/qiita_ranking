@@ -9,6 +9,7 @@ class Item < ApplicationRecord
     item_params = make_params(response_item)
     item = Item.find_or_initialize_by(qiita_item_id: item_params['qiita_item_id'])
     item.update!(item_params)
+    item
   end
 
   def self.make_params(response_item)
