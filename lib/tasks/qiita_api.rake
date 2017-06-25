@@ -73,6 +73,7 @@ namespace :qiita_api do
         ap response.headers
         ap response.status
       end
+      qiita_tag.update(items_is_got: true)
     end
   end
 
@@ -94,6 +95,7 @@ namespace :qiita_api do
         ap response.headers
         ap response.status
       end
+      qiita_user.update(items_is_got: true)
     end
   end
 end
