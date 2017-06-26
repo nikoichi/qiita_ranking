@@ -13,6 +13,7 @@ namespace :qiita_api do
       response_tag = response.body
       QiitaTag.update_or_create(response_tag)
       # TODO: 例外処理記載
+      p '【get_tag】'
       ap response.headers
       ap response.status
     end
@@ -36,7 +37,11 @@ namespace :qiita_api do
     item_id = args.id
     response = client.get_item(item_id)
     response_item = response.body
-    Item.update_or_create(response_item)
+    ap Item.update_or_create(response_item)
+    # TODO: 例外処理記載
+    p '【get_item】'
+    ap response.headers
+    ap response.status
   end
 
   desc 'qiitaの最新の投稿を取得'
@@ -50,6 +55,7 @@ namespace :qiita_api do
         ap Item.update_or_create(response_item)
       end
       # TODO: 例外処理記載
+      p '【get_item】'
       ap response.headers
       ap response.status
     end
@@ -62,18 +68,28 @@ namespace :qiita_api do
     qiita_tag_ids = args.qiita_tag_ids.split('#').map(&:to_i)
     qiita_tag_ids.each do |qiita_tag_id|
       qiita_tag = QiitaTag.find(qiita_tag_id)
+      # ループ内で使用する変数宣言。
+      previous_items_count = qiita_tag.items_count_when_acquired || 0
+      items_total_count = 0
       # FIXME: あとで100に変える。per_pageも。
       1.times do |i|
         response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
-        response_items = response.body
+        ap response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)
         end
         # TODO: 例外処理記載
+        p '【get_item】'
         ap response.headers
         ap response.status
+        # ループ初回に変数設定&rakeタスク実行時の投稿数(items_count_when_acquired)をアップデート
+        if i == 0
+          items_total_count = response.headers['Total-Count'].to_i
+          qiita_tag.update(items_count_when_acquired: items_total_count)
+        end
+        # 投稿数の差分を全て取得したらループを抜ける
+        break if (items_total_count - previous_items_count) / 100 == i
       end
-      qiita_tag.update(items_is_got: true)
     end
   end
 
@@ -84,6 +100,9 @@ namespace :qiita_api do
     qiita_user_ids = args.qiita_user_ids.split('#').map(&:to_i)
     qiita_user_ids.each do |qiita_user_id|
       qiita_user = QiitaUser.find(qiita_user_id)
+      # ループ内で使用する変数宣言。
+      previous_items_count = qiita_user.items_count_when_acquired || 0
+      items_total_count = 0
       # FIXME: あとで100に変える。per_pageも。
       1.times do |i|
         response = client.list_user_items(qiita_user.nickname, { page: i + 1, per_page: 1 })
@@ -92,10 +111,17 @@ namespace :qiita_api do
           ap Item.update_or_create(response_item)
         end
         # TODO: 例外処理記載
+        p '【get_item】'
         ap response.headers
         ap response.status
+        # ループ初回に変数設定&rakeタスク実行時の投稿数(items_count_when_acquired)をアップデート
+        if i == 0
+          items_total_count = response.headers['Total-Count'].to_i
+          qiita_user.update(items_count_when_acquired: items_total_count)
+        end
+        # 投稿数の差分を全て取得したらループを抜ける
+        break if (items_total_count - previous_items_count) / 100 == i
       end
-      qiita_user.update(items_is_got: true)
     end
   end
 end
