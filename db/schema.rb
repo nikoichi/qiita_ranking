@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170626073058) do
 
-  create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
     t.string "error_message"
     t.string "error_type"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["item_id"], name: "index_item_error_logs_on_item_id"
   end
 
-  create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
     t.bigint "qiita_tag_id", null: false
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["qiita_tag_id"], name: "index_item_qiita_tags_on_qiita_tag_id"
   end
 
-  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "qiita_item_id", null: false
     t.string "title", null: false
     t.bigint "qiita_user_id", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["qiita_user_id"], name: "index_items_on_qiita_user_id"
   end
 
-  create_table "like_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "like_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "like_total_count", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
@@ -55,14 +55,14 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["item_id"], name: "index_like_total_counts_on_item_id"
   end
 
-  create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
   end
 
-  create_table "qiita_tag_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "qiita_tag_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "qiita_tag_id", null: false
     t.string "error_message"
     t.string "error_type"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["qiita_tag_id"], name: "index_qiita_tag_error_logs_on_qiita_tag_id"
   end
 
-  create_table "qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name", null: false
     t.string "icon_url"
     t.integer "items_count", null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["name"], name: "index_qiita_tags_on_name", unique: true
   end
 
-  create_table "qiita_user_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "qiita_user_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "qiita_user_id", null: false
     t.string "error_message"
     t.string "error_type"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["qiita_user_id"], name: "index_qiita_user_error_logs_on_qiita_user_id"
   end
 
-  create_table "qiita_user_stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "qiita_user_stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "qiita_user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["qiita_user_id"], name: "index_qiita_user_stocks_on_qiita_user_id"
   end
 
-  create_table "qiita_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "qiita_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "nickname", null: false
     t.integer "permanent_id", null: false
     t.string "name"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
     t.index ["permanent_id"], name: "index_qiita_users_on_permanent_id", unique: true
   end
 
-  create_table "stock_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "stock_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "stock_total_count", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false

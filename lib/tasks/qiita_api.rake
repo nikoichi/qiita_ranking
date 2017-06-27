@@ -74,7 +74,7 @@ namespace :qiita_api do
       # FIXME: あとで100に変える。per_pageも。
       1.times do |i|
         response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
-        ap response_items = response.body
+        response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)
         end
