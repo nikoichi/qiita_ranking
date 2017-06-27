@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626073058) do
+ActiveRecord::Schema.define(version: 20170627075002) do
 
   create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170626073058) do
   end
 
   create_table "stock_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "stock_total_count", null: false
+    t.integer "total_count", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
