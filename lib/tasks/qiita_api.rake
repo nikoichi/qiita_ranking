@@ -72,8 +72,8 @@ namespace :qiita_api do
       previous_items_count = qiita_tag.items_count_when_acquired || 0
       items_total_count = 0
       # FIXME: あとで100に変える。per_pageも。
-      1.times do |i|
-        response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 1 })
+      3.times do |i|
+        response = client.list_tag_items(qiita_tag.name, { page: i + 1, per_page: 2 })
         response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)
@@ -122,6 +122,21 @@ namespace :qiita_api do
         # 投稿数の差分を全て取得したらループを抜ける
         break if (items_total_count - previous_items_count) / 100 == i
       end
+    end
+  end
+
+  desc '指定したタグの投稿のストック数を取得する'
+  task :get_stock_total_counts, ['tag_id'] => :environment do |_task, args|
+    client = make_client
+    items = QiitaTag.find(args.tag_id).items.limit(2)
+    items.each do |item|
+      response = client.list_item_stockers(item.qiita_item_id)
+      total_count = response.headers['Total-Count']
+      # # TODO: 例外処理記載
+      p '【get_stocl_total_counts】'
+      ap StockTotalCount.update_or_create(item.id, total_count)
+      ap response.headers
+      ap response.status
     end
   end
 end
