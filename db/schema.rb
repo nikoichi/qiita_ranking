@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627075002) do
+ActiveRecord::Schema.define(version: 20170630100503) do
 
   create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170627075002) do
     t.string "icon_url"
     t.integer "items_count", null: false
     t.integer "followers_count", null: false
-    t.integer "items_count_when_acquired"
+    t.integer "obtained_item_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20170627075002) do
     t.integer "followees_count", null: false
     t.integer "followers_count", null: false
     t.integer "items_count", null: false
-    t.integer "items_count_when_acquired"
+    t.integer "obtained_item_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
