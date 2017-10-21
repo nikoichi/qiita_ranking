@@ -87,8 +87,11 @@ namespace :qiita_api do
         ap response.status
         # TODO: 意図通りの回数になっているか確認。
         qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * 100)
-        # APIを叩く回数の制限が50以下になったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
-        p '制限近いから終了' && fail if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
+        # APIを叩く回数の制限が少なくなったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
+        if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
+          p '制限近いから終了'
+          fail
+        end
       end
     end
   end

@@ -1,2 +1,2 @@
 qiita_api:
-  remaining_number_for_break: 50 # apiを叩いて良い回数がこの数を下回ったら処理中断
+  remaining_number_for_break: 30 # apiを叩いて良い回数がこの数を下回ったら処理中断
