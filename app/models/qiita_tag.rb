@@ -25,7 +25,7 @@ class QiitaTag < ApplicationRecord
         ap response_tag = response.body
         qiita_tag = update_or_create(response_tag)
         # TODO: 例外処理記載
-        p '【get_tag】'
+        logger '【get_tag】'
         ap response.headers
         ap response.status
       end

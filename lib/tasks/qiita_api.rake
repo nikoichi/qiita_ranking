@@ -76,7 +76,8 @@ namespace :qiita_api do
       loop_number = Settings.qiita_api.pages_number if loop_number > Settings.qiita_api.pages_number
       loop_number.times do |i|
         remaining_pages_number = loop_number - i
-        response = client.list_tag_items(qiita_tag.name, { page: remaining_pages_number, per_page: Settings.qiita_api.items_number })
+        response = client.list_tag_items(qiita_tag.name, { page: remaining_pages_number,
+                                                           per_page: Settings.qiita_api.items_number })
         response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)

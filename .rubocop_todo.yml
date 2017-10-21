@@ -2,10 +2,6 @@
 AsciiComments:
   Enabled: false
 
-# メソッド名のprefixに「set_」「get_」を許可
-AccessorMethodName:
-  Enabled: false
-
 # クラスにコメントを残さない
 Documentation:
   Enabled: false
@@ -37,21 +33,8 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Max: 21
 
-# Offense count: 1
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 133
-
 # Offense count: 4
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Max: 22
-
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'app/models/qiita_tag.rb'
 
