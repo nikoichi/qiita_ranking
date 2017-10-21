@@ -72,7 +72,6 @@ namespace :qiita_api do
       previous_items_count = qiita_tag.obtained_item_number || 0
       response = client.list_tag_items(qiita_tag.name, { page: 1, per_page: 1 })
       items_total_count = response.headers['Total-Count'].to_i
-      break if response.headers['Rate-Remaining'].to_i < 50
       # ループ回数設定
       roop_number = (items_total_count - previous_items_count) / 100 + 1
       roop_number = 100 if roop_number > 100
@@ -89,7 +88,8 @@ namespace :qiita_api do
         ap response.status
         # TODO: 意図通りの回数になっているか確認。
         qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * 100)
-        break if response.headers['Rate-Remaining'].to_i < 50
+        # APIを叩く回数の制限が50以下になったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
+        fail if response.headers['Rate-Remaining'].to_i < 50
       end
     end
   end

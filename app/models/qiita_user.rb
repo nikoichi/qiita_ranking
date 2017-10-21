@@ -4,7 +4,7 @@ class QiitaUser < ApplicationRecord
 
   def self.update_or_create(response_user)
     qiita_user_params = make_params(response_user)
-    qiita_user = QiitaUser.find_or_initialize_by(nickname: qiita_user_params['nickname'])
+    qiita_user = QiitaUser.find_or_initialize_by(permanent_id: qiita_user_params['permanent_id'])
     qiita_user.update!(qiita_user_params)
     qiita_user
   end
