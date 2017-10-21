@@ -81,28 +81,4 @@ Style/EmptyLines:
     - 'Gemfile'
     - 'bin/setup'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: empty_lines, no_empty_lines
-Style/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'db/schema.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Style/ExtraSpacing:
-  Exclude:
-    - 'Gemfile'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/NumericLiterals:
-  MinDigits: 15
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/SpaceInsideBrackets:
-  Exclude:
-    - 'config/environments/production.rb'

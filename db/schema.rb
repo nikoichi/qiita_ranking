@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021085929) do
-
+ActiveRecord::Schema.define(version: 20_171_021_085_929) do
   create_table 'item_error_logs', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4' do |t|
     t.bigint 'item_id', null: false
     t.string 'error_message'

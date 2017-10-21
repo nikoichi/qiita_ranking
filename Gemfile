@@ -43,7 +43,7 @@ group :development, :test do
   gem 'factory_girl_rails'     # テストデータの生成
   gem 'database_cleaner'       # テスト実行後にDBをクリア
   gem 'capybara'               # ブラウザでの操作をシミュレートしてテストができる
-  gem 'rails-erd'  # ER図を生成するためのgem
+  gem 'rails-erd' # ER図を生成するためのgem
 end
 
 group :development do
@@ -53,7 +53,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'bullet'                 # 余計なSQLを検出できる
+  gem 'bullet' # 余計なSQLを検出できる
   # debug
   gem 'better_errors'          # エラー画面を見やすくする
   gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
