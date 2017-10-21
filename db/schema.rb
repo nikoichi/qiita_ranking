@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021075310) do
+ActiveRecord::Schema.define(version: 20171021075904) do
 
   create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171021075310) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.integer "comments_count"
+    t.integer "likes_count"
     t.index ["qiita_item_id"], name: "index_items_on_qiita_item_id", unique: true
     t.index ["qiita_user_id"], name: "index_items_on_qiita_user_id"
   end
