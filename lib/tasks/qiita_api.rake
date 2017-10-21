@@ -1,11 +1,11 @@
 namespace :qiita_api do
-  def make_client
+  def qiita_client
     Qiita::Client.new(access_token: ENV['QIITA_ACCESS_TOKEN'])
   end
 
   desc '名前を指定してタグを取得(引数は#で区切って複数記述可)'
   task :get_tag, ['name'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     # 引数に#で区切った複数の名前を指定できるような処理とした
     tag_names = args.name.split('#')
     tag_names.each do |tag_name|
@@ -21,7 +21,7 @@ namespace :qiita_api do
 
   desc '指定したユーザーを取得'
   task :get_user, ['name'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     user_name = args.name
     response = client.get_user(user_name)
     response_user = response.body
@@ -33,7 +33,7 @@ namespace :qiita_api do
 
   desc '指定した投稿を取得'
   task :get_item, ['id'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     item_id = args.id
     response = client.get_item(item_id)
     ap Item.update_or_create(response_item)
@@ -45,7 +45,7 @@ namespace :qiita_api do
 
   desc 'qiitaの最新の投稿を取得'
   task get_latest_items: :environment do
-    client = make_client
+    client = qiita_client
     # FIXME: ログを保存するテーブルを作り、取得できた投稿の最新の投稿の番号を保持。処理実行回数の最適化に使用する。
     100.times do |i|
       response = client.list_items(page: 100 - i, per_page: 100)
@@ -62,7 +62,7 @@ namespace :qiita_api do
 
   desc '指定したタグの投稿を取得(引数は#で区切って複数記述可)'
   task :get_tags_items, ['qiita_tag_ids'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     # 引数に#で区切った複数の名前を指定できるような処理とした
     qiita_tag_ids = args.qiita_tag_ids.split('#').map(&:to_i)
     qiita_tag_ids.each do |qiita_tag_id|
@@ -88,14 +88,14 @@ namespace :qiita_api do
         # TODO: 意図通りの回数になっているか確認。
         qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * 100)
         # APIを叩く回数の制限が50以下になったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
-        fail if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
+        p '制限近いから終了' && fail if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
       end
     end
   end
 
   desc '指定したユーザーの投稿を取得(引数は#で区切って複数記述可)'
   task :get_user_items, ['qiita_user_ids'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     # 引数に#で区切った複数の名前を指定できるような処理とした
     qiita_user_ids = args.qiita_user_ids.split('#').map(&:to_i)
     qiita_user_ids.each do |qiita_user_id|
@@ -127,7 +127,7 @@ namespace :qiita_api do
 
   desc '指定したタグの投稿のストック数を取得する'
   task :get_stock_total_counts, ['tag_id'] => :environment do |_task, args|
-    client = make_client
+    client = qiita_client
     items = QiitaTag.find(args.tag_id).items
     items.each do |item|
       response = client.list_item_stockers(item.qiita_item_id)
