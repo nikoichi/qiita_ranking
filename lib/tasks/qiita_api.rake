@@ -72,11 +72,11 @@ namespace :qiita_api do
       response = client.list_tag_items(qiita_tag.name, { page: 1, per_page: 1 })
       items_total_count = response.headers['Total-Count'].to_i
       # ループ回数設定
-      loop_number = (items_total_count - previous_items_count) / 100 + 1
-      loop_number = 100 if loop_number > 100
+      loop_number = (items_total_count - previous_items_count) / Settings.qiita_api.pages_number + 1
+      loop_number = Settings.qiita_api.pages_number if loop_number > Settings.qiita_api.pages_number
       loop_number.times do |i|
         remaining_pages_number = loop_number - i
-        response = client.list_tag_items(qiita_tag.name, { page: remaining_pages_number, per_page: 100 })
+        response = client.list_tag_items(qiita_tag.name, { page: remaining_pages_number, per_page: Settings.qiita_api.items_number })
         response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)
@@ -86,7 +86,7 @@ namespace :qiita_api do
         ap response.headers
         ap response.status
         # TODO: 意図通りの回数になっているか確認。
-        qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * 100)
+        qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * Settings.qiita_api.items_number)
         # APIを叩く回数の制限が少なくなったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
         if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
           p '制限近いから終了'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021080119) do
+ActiveRecord::Schema.define(version: 20171021085929) do
 
   create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "item_id", null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20171021080119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.text "message"
     t.index ["name"], name: "index_qiita_tags_on_name", unique: true
   end
 

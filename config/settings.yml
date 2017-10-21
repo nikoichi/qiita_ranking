@@ -1,2 +1,4 @@
 qiita_api:
   remaining_number_for_break: 30 # apiを叩いて良い回数がこの数を下回ったら処理中断
+  pages_number: 100 #最大取得可能ページ数
+  items_number: 100 #1ページあたりの最大投稿数
