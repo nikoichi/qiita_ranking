@@ -10,6 +10,10 @@ AccessorMethodName:
 Documentation:
   Enabled: false
 
+# ハッシュのカッコを外さない。そのほうが可読性良いように思う。
+Style/BracesAroundHashParameters:
+  Enabled: false
+
 # Offense count: 51
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
@@ -65,20 +69,4 @@ Style/AlignParameters:
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: braces, no_braces, context_dependent
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'lib/tasks/qiita_api.rake'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/EmptyLines:
-  Exclude:
-    - 'Gemfile'
-    - 'bin/setup'
-
 
