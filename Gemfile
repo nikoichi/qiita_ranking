@@ -34,6 +34,7 @@ gem 'paranoia'
 gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
 gem 'sanitize'                 # HTMLタグを除去するために導入
 gem 'config'
+gem 'rubocop'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
