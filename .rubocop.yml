@@ -1,6 +1,8 @@
-# Railsモードにする
 Rails:
   Enabled: true
+
+# 違反を一旦無視
+  inherit_from: .rubocop_todo.yml
 
 # 日本語でのコメントを許可
 AsciiComments:
