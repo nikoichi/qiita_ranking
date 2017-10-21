@@ -61,7 +61,7 @@ namespace :qiita_api do
   end
 
   desc '指定したタグの投稿を取得(引数は#で区切って複数記述可)'
-  task :get_tag_items, ['qiita_tag_ids'] => :environment do |_task, args|
+  task :get_tags_items, ['qiita_tag_ids'] => :environment do |_task, args|
     client = make_client
     # 引数に#で区切った複数の名前を指定できるような処理とした
     qiita_tag_ids = args.qiita_tag_ids.split('#').map(&:to_i)
