@@ -33,6 +33,7 @@ gem 'jquery-rails'             # jQueryが使える
 gem 'paranoia'
 gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
 gem 'sanitize'                 # HTMLタグを除去するために導入
+gem 'config'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
