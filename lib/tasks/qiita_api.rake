@@ -36,7 +36,6 @@ namespace :qiita_api do
     client = make_client
     item_id = args.id
     response = client.get_item(item_id)
-    response_item = response.body
     ap Item.update_or_create(response_item)
     # TODO: 例外処理記載
     p '【get_item】'
@@ -89,7 +88,7 @@ namespace :qiita_api do
         # TODO: 意図通りの回数になっているか確認。
         qiita_tag.update(obtained_item_number: items_total_count - (remaining_pages_number - 1) * 100)
         # APIを叩く回数の制限が50以下になったらrakeタスクを終了。ブロック内のrakeタスクから抜けるにはfailを使うとのこと。
-        fail if response.headers['Rate-Remaining'].to_i < 50
+        fail if response.headers['Rate-Remaining'].to_i < Settings.qiita_api.remaining_number_for_break
       end
     end
   end
