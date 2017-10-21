@@ -72,10 +72,10 @@ namespace :qiita_api do
       response = client.list_tag_items(qiita_tag.name, { page: 1, per_page: 1 })
       items_total_count = response.headers['Total-Count'].to_i
       # ループ回数設定
-      roop_number = (items_total_count - previous_items_count) / 100 + 1
-      roop_number = 100 if roop_number > 100
-      roop_number.times do |i|
-        remaining_pages_number = roop_number - i
+      loop_number = (items_total_count - previous_items_count) / 100 + 1
+      loop_number = 100 if loop_number > 100
+      loop_number.times do |i|
+        remaining_pages_number = loop_number - i
         response = client.list_tag_items(qiita_tag.name, { page: remaining_pages_number, per_page: 100 })
         response_items = response.body
         response_items.each do |response_item|
