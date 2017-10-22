@@ -1,3 +1,135 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag "ranking"
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
+    meta[name="description" content=""]
+    meta[name="author" content=""]
+    title
+      | Off Canvas Template for Bootstrap
+  body
+    nav.navbar.navbar-expand-md.fixed-top.navbar-dark.bg-dark
+      a.navbar-brand[href="#"]
+        | Navbar
+      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"]
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link[href="#"]
+              | Home
+              span.sr-only
+                | (current)
+          li.nav-item
+            a.nav-link[href="#"]
+              | Link
+          li.nav-item
+            a.nav-link.disabled[href="#"]
+              | Disabled
+          li.nav-item.dropdown
+            a#dropdown01.nav-link.dropdown-toggle[href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+              | Dropdown
+            .dropdown-menu[aria-labelledby="dropdown01"]
+              a.dropdown-item[href="#"]
+                | Action
+              a.dropdown-item[href="#"]
+                | Another action
+              a.dropdown-item[href="#"]
+                | Something else here
+        form.form-inline.my-2.my-lg-0
+          input.form-control.mr-sm-2[type="text" placeholder="Search" aria-label="Search"]
+          button.btn.btn-outline-success.my-2.my-sm-0[type="submit"]
+            | Search
+    main.container[role="main"]
+      .row.row-offcanvas.row-offcanvas-right
+        .col-12.col-md-9
+          p.float-right.d-md-none
+            button.btn.btn-primary.btn-sm[type="button" data-toggle="offcanvas"]
+              | Toggle nav
+          .jumbotron
+            h1
+              | Hello, world!
+            p
+              | This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.
+          .row
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+            .col-6.col-lg-4
+              h2
+                | Heading
+              p
+                | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              p
+                a.btn.btn-secondary[href="#" role="button"]
+                  | View details »
+        #sidebar.col-6.col-md-3.sidebar-offcanvas
+          .list-group
+            a.list-group-item.active[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+            a.list-group-item[href="#"]
+              | Link
+      hr
+    footer
+      p
+        | © Company 2017
+    script
+      | window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
+
 - @items.each do |item|
   .item-box
     = link_to item.title, item.url
