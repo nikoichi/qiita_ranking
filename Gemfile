@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
 gem 'mysql2'
-gem 'compass-rails'            # Sassの機能拡張
 gem 'coffee-rails'             # JavaScriptを簡潔に書ける
 gem 'dotenv-rails'
 gem 'jquery-rails'             # jQueryが使える
