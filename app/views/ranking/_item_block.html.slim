@@ -1,0 +1,7 @@
+.col-6.col-lg-4
+  h4
+    = item.title.truncate(60)
+  p
+    = item.description.truncate(100)
+  p
+    = link_to 'Qiitaを見る', item.url
