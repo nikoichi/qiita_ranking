@@ -4,6 +4,16 @@ class Item < ApplicationRecord
   has_many :qiita_tags, through: :item_qiita_tags
   has_many :stock_users, through: :qiita_user_stocks, class_name: 'QiitaUser', foreign_key: 'qiita_user_id'
 
+  scope :search_by_qiita_tag_ids, -> (qiita_tag_ids) {
+    if qiita_tag_ids.present?
+      joins(:item_qiita_tags).where('qiita_tag_id IN (?)', qiita_tag_ids)
+    end
+  }
+
+  scope :search_by_years, -> (year) {
+    where('items.qiita_created_at BETWEEN ? AND ?', year, year.end_of_year)
+  }
+
   # qiita_tagと中間テーブルも同時にupdate。qiita_tagがない場合はcreateする。
   def self.update_or_create(response_item)
     item_params = make_params(response_item)
