@@ -12,7 +12,7 @@ RSpec.describe Item, type: :model do
         it { is_expected.to include(item) }
       end
       context 'qiita_tag_ids検索で一致しない場合' do
-        let(:qiita_tag_ids) { [2, 3]}
+        let(:qiita_tag_ids) { [2, 3] }
         it { is_expected.to eq [] }
       end
       context 'qiita_tag_idsがnilの場合' do
@@ -23,7 +23,7 @@ RSpec.describe Item, type: :model do
 
     describe 'search_by_year' do
       subject { Item.search_by_year(year) }
-      let!(:item) { create(:item, qiita_created_at: '2017-06-01 00:00:00')}
+      let!(:item) { create(:item, qiita_created_at: '2017-06-01 00:00:00') }
       context 'year検索で一致する場合' do
         let(:year) { Time.zone.local(2017, 1, 1) }
         it { is_expected.to include(item) }
