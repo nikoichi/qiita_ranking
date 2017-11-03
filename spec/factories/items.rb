@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :item do
     qiita_item_id 'MyString'
     title 'MyString'
-    qiita_user nil
+    qiita_user { create(:qiita_user) }
     url 'MyString'
     is_private false
     description 'MyText'

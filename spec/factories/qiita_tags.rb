@@ -4,7 +4,7 @@ FactoryGirl.define do
     icon_url 'MyString'
     items_count 1
     followers_count 1
-    items_is_got false
+    obtained_item_number nil
     deleted_at '2017-06-21 17:42:37'
   end
 end
