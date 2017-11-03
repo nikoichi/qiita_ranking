@@ -1,4 +1,4 @@
-class ItemSearch < ApplicationRecord
+class ItemSearch
   include ActiveModel::Model
 
   #year:対象の年の初日が格納されている
