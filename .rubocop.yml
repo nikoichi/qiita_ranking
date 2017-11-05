@@ -1,2 +1,17 @@
+# todoの違反はいつか直すべき違反。
+inherit_from: .rubocop_todo.yml
+
 Rails:
   Enabled: true
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# ハッシュのカッコを外さない。そのほうが可読性良いように思う。
+Style/BracesAroundHashParameters:
+  Enabled: false

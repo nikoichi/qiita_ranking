@@ -1,14 +1,4 @@
-# 日本語でのコメントを許可
-AsciiComments:
-  Enabled: false
-
-# クラスにコメントを残さない
-Documentation:
-  Enabled: false
-
-# ハッシュのカッコを外さない。そのほうが可読性良いように思う。
-Style/BracesAroundHashParameters:
-  Enabled: false
+# こちらのファイルのはいつか修正するべき項目。
 
 # Offense count: 51
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
@@ -20,14 +10,6 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'lib/tasks/*'
-
-# 下記コマンドで自動生成されたやつ
-# `rubocop --auto-gen-config --exclude-limit 999999`
-# on 2017-10-21 18:35:02 +0900 using RuboCop version 0.36.0.
-# The point is for the user to remove these configuration records
-# one by one as the offenses are removed from the code base.
-# Note that changes in the inspected code, or installation of new
-# versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 3
 Metrics/AbcSize:
