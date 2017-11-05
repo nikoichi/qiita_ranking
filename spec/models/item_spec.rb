@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
+  shared_examples_for '検索結果にitemを含む' do
+    it { is_expected.to include(item) }
+  end
+  shared_examples_for '検索結果が空' do
+    it { is_expected.to eq [] }
+  end
+
   describe 'scope' do
     describe 'search_by_qiita_tag_ids' do
       subject { Item.search_by_qiita_tag_ids(qiita_tag_ids) }
@@ -9,15 +16,15 @@ RSpec.describe Item, type: :model do
       let(:qiita_tag) { create(:qiita_tag, id: 1) }
       context 'qiita_tag_ids検索で一致する場合' do
         let(:qiita_tag_ids) { [1, 2] }
-        it { is_expected.to include(item) }
+        it_behaves_like '検索結果にitemを含む'
       end
       context 'qiita_tag_ids検索で一致しない場合' do
         let(:qiita_tag_ids) { [2, 3] }
-        it { is_expected.to eq [] }
+        it_behaves_like '検索結果が空'
       end
       context 'qiita_tag_idsがnilの場合' do
         let(:qiita_tag_ids) { nil }
-        it { is_expected.to include(item) }
+        it_behaves_like '検索結果にitemを含む'
       end
     end
 
@@ -26,15 +33,15 @@ RSpec.describe Item, type: :model do
       let!(:item) { create(:item, qiita_created_at: '2017-06-01 00:00:00') }
       context 'year検索で一致する場合' do
         let(:year) { Time.zone.local(2017, 1, 1) }
-        it { is_expected.to include(item) }
+        it_behaves_like '検索結果にitemを含む'
       end
       context 'year検索で一致しない場合' do
         let(:year) { Time.zone.local(2018, 1, 1) }
-        it { is_expected.to eq [] }
+        it_behaves_like '検索結果が空'
       end
       context 'yearがnilの場合' do
         let(:year) { nil }
-        it { is_expected.to include(item) }
+        it_behaves_like '検索結果にitemを含む'
       end
     end
   end
