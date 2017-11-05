@@ -1,7 +1,7 @@
 class QiitaTag < ApplicationRecord
   has_many :item_qiita_tags
   has_many :items, through: :item_qiita_tags
-  RUBY_ID = 1.freeze
+  RUBY_ID = 1
 
   def self.update_or_create(response_tag)
     qiita_tag_params = make_params(response_tag)
