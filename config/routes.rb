@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'ranking#show'
-  resources :ranking, only: :show
+  root to: 'ranking#index'
+  resources :ranking, only: :index
 end

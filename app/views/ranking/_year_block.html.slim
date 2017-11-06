@@ -1,6 +1,7 @@
+- today = Date.today
 - if i == 0
-  a.list-group-item.active[href="#"]
-    | Link
+  = link_to today.strftime("%Y"), ranking_index_path, class: 'list-group-item active'
 - else
-  a.list-group-item[href="#"]
-    | Link
+  - target_date = today - i.years
+  = link_to target_date.strftime("%Y"), ranking_index_path, class: 'list-group-item'
+
