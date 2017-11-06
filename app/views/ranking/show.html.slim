@@ -49,26 +49,8 @@ body
             = render 'item_block', item: item
       #sidebar.col-6.col-md-3.sidebar-offcanvas
         .list-group
-          a.list-group-item.active[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
-          a.list-group-item[href="#"]
-            | Link
+          - Item::SEARCH_YEARS_NUMBER.times do |i|
+            = render 'year_block', i: i
     hr
   footer
     p

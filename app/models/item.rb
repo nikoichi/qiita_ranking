@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   has_many :qiita_tags, through: :item_qiita_tags
   has_many :stock_users, through: :qiita_user_stocks, class_name: 'QiitaUser', foreign_key: 'qiita_user_id'
 
+  SEARCH_YEARS_NUMBER = 10
+
   scope :search_by_qiita_tag_ids, lambda { |qiita_tag_ids|
     joins(:item_qiita_tags).where('qiita_tag_id IN (?)', qiita_tag_ids) if qiita_tag_ids.present?
   }
