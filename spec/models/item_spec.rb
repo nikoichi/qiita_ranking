@@ -32,11 +32,11 @@ RSpec.describe Item, type: :model do
       subject { Item.search_by_year(year) }
       let!(:item) { create(:item, qiita_created_at: '2017-06-01 00:00:00') }
       context 'year検索で一致する場合' do
-        let(:year) { Time.zone.local(2017, 1, 1) }
+        let(:year) { 2017 }
         it_behaves_like '検索結果にitemを含む'
       end
       context 'year検索で一致しない場合' do
-        let(:year) { Time.zone.local(2018, 1, 1) }
+        let(:year) { 2018 }
         it_behaves_like '検索結果が空'
       end
       context 'yearがnilの場合' do
