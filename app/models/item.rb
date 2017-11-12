@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   }
 
   scope :search_by_year, lambda { |year|
-    where('items.qiita_created_at BETWEEN ? AND ?', year, year.end_of_year) if year.present?
+    where('items.qiita_created_at BETWEEN ? AND ?', "#{year}-01-01", "#{year}-12-31") if year.present?
   }
 
   # qiita_tagと中間テーブルも同時にupdate。qiita_tagがない場合はcreateする。
