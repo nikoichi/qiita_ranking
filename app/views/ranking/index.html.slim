@@ -3,7 +3,7 @@
 body
   nav.navbar.navbar-expand-md.fixed-top.navbar-dark.bg-dark
     a.navbar-brand[href="#"]
-      | Navbar
+      | Qiitaランキング
     button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     #navbarsExampleDefault.collapse.navbar-collapse
@@ -49,6 +49,7 @@ body
             = render 'item_block', item: item
       #sidebar.col-6.col-md-3.sidebar-offcanvas
         .list-group
+          = link_to '全期間', ranking_index_path, class: "list-group-item #{'active' if @item_search.year.blank?}"
           - Item::SEARCH_YEARS_NUMBER.times do |i|
             = render 'year_block', i: i
     hr
