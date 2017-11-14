@@ -1,6 +1,9 @@
 # todoの違反はいつか直すべき違反。
 inherit_from: .rubocop_todo.yml
 
+AllCops:
+  TargetRubyVersion: 2.4
+
 Rails:
   Enabled: true
 
