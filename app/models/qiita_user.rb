@@ -13,11 +13,9 @@ class QiitaUser < ApplicationRecord
     # キー'id'を'nickname'にリネーム
     response_user['nickname'] = response_user.delete('id')
     # organizationにOrganizationモデルのインスタンス変数をセット
-    if response_user['organization'].present?
-      response_user['organization'] = Organization.find_or_create_by(name: response_user['organization'])
-    else
-      response_user['organization'] = nil
-    end
+    response_user['organization'] = if response_user['organization'].present?
+                                      Organization.find_or_create_by(name: response_user['organization'])
+                                    end
     response_user
   end
 end

@@ -32,7 +32,7 @@ gem 'paranoia'
 gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
 gem 'sanitize'                 # HTMLタグを除去するために導入
 gem 'config'
-gem 'rubocop'
+gem 'rubocop', require: false
 gem 'bootstrap', '~> 4.0.0.beta2'
 
 group :development, :test do
@@ -62,8 +62,6 @@ group :development do
   gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
   gem 'tapp'                   # プリントデバッグがしやすくなる
   gem 'awesome_print'          # プリントデバッグの出力を整形
-  gem 'hirb'                   # SQLの結果を見やすく整形してくれる
-  gem 'hirb-unicode'           # hirbの日本語対応
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
