@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RankingController < ApplicationController
   def index
     # tag_id = params[:id] || QiitaTag::RUBY_ID

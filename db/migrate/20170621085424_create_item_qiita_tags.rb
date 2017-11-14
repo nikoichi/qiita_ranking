@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateItemQiitaTags < ActiveRecord::Migration[5.1]
   def change
     create_table :item_qiita_tags do |t|

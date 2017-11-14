@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QiitaTag < ApplicationRecord
   has_many :item_qiita_tags
   has_many :items, through: :item_qiita_tags

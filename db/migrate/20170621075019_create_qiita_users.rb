@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateQiitaUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :qiita_users do |t|

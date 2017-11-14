@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :qiita_api do
   def qiita_client
     Qiita::Client.new(access_token: ENV['QIITA_ACCESS_TOKEN'])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :qiita_tag_error_log do
     qiita_tag nil
