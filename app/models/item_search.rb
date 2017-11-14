@@ -5,6 +5,6 @@ class ItemSearch
 
   def search_items
     Item.search_by_qiita_tag_ids(qiita_tag_ids)
-         .search_by_year(year)
+        .search_by_year(year)
   end
 end
