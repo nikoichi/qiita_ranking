@@ -96,10 +96,3 @@ Style/StderrPuts:
 Style/StringLiterals:
   Exclude:
     - '.pryrc'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize, SupportedStyles.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
