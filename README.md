@@ -5,19 +5,25 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Ruby version
+- 2.4.1
 
-* System dependencies
+## データベース
+[ridgepole](https://github.com/winebarrel/ridgepole)を使っている。
+```bash
+$ ridgepole -c config/database.yml --apply -E developement
+```
+- test DB
+```bash
+$ ridgepole -c config/database.yml --apply -E test
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+## その他
+### rubocop
+[ここを参考](https://qiita.com/kyohei_shimada/items/e739dec967eb5e61721c)にrubocop導入
+```
+$ rubocop -Rc .rubocop.yml
+```
 
 * Deployment instructions
 
