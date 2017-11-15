@@ -88,11 +88,3 @@ Style/SignalException:
 Style/StderrPuts:
   Exclude:
     - 'bin/yarn'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - '.pryrc'
