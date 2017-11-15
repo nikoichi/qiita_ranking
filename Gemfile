@@ -19,6 +19,7 @@ gem 'jquery-rails'             # jQueryが使える
 gem 'mysql2'
 gem 'paranoia'
 gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
+gem 'ridgepole'
 gem 'rubocop', require: false
 gem 'sanitize'                 # HTMLタグを除去するために導入
 gem 'slim-rails'
