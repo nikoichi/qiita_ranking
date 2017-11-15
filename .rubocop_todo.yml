@@ -82,9 +82,3 @@ Style/PercentLiteralDelimiters:
 Style/SignalException:
   Exclude:
     - 'lib/tasks/qiita_api.rake'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/StderrPuts:
-  Exclude:
-    - 'bin/yarn'
