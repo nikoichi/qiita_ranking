@@ -18,6 +18,15 @@ $ ridgepole -c config/database.yml --apply -E developement
 $ ridgepole -c config/database.yml --apply -E test
 ```
 
+- seed
+seed_fuを使っている
+```
+# マスタデータ。最初に実行すれば良い。
+bin/rake db:seed_fu FIXTURE_PATH=./db/fixtures/masters
+# 開発用データ
+bin/rake db:seed_fu FIXTURE_PATH=./db/fixtures/development
+```
+
 ## その他
 ### rubocop
 [ここを参考](https://qiita.com/kyohei_shimada/items/e739dec967eb5e61721c)にrubocop導入

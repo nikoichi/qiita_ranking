@@ -22,6 +22,7 @@ gem 'ridgepole'
 gem 'rubocop', require: false
 gem 'sanitize'                 # HTMLタグを除去するために導入
 gem 'sass-rails'
+gem 'seed-fu', '~> 2.3'
 gem 'slim-rails'
 
 group :development, :test do
