@@ -1,5 +1,24 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  t.string "name", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["name"], name: "index_qiita_tags_on_name", unique: true
+end
+
+create_table "category_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  t.bigint "category_id", null: false
+  t.bigint "tag_id", null: false
+  t.integer "order", default: 100
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["category_id"], name: "index_category_tags_on_category_id"
+  t.index ["tag_id"], name: "index_category_tags_on_tag_id"
+end
+add_foreign_key "category_tags", "categories"
+add_foreign_key "category_tags", "tags"
+
 create_table "item_error_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   t.bigint "item_id", null: false
   t.string "error_message"
@@ -151,7 +170,6 @@ create_table "tag_qiita_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT 
   t.bigint "qiita_tag_id", null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
-  t.datetime "deleted_at"
   t.index ["tag_id"], name: "index_tag_qiita_tags_on_item_id"
   t.index ["qiita_tag_id"], name: "index_tag_qiita_tags_on_qiita_tag_id"
 end
