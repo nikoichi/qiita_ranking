@@ -18,7 +18,7 @@ body
             .dropdown-menu[aria-labelledby="dropdown01"]
               - category.tags.each do |tag|
                 a.dropdown-item[href="#"]
-                  = tag.name
+                  = link_to tag.name, ranking_index_path(tag_id: tag.id, year: @item_search.year)
       form.form-inline.my-2.my-lg-0
         input.form-control.mr-sm-2[type="text" placeholder="Search" aria-label="Search"]
         button.btn.btn-outline-success.my-2.my-sm-0[type="submit"]
@@ -26,31 +26,31 @@ body
   main.container[role="main"]
     .row.row-offcanvas.row-offcanvas-right
       .col-12.col-md-9
-        p.float-right.d-md-none
-          button.btn.btn-primary.btn-sm[type="button" data-toggle="offcanvas"]
-            | Toggle nav
-        .first-item-box
-          h5
-            = link_to @items.first.title.truncate(60), @items.first.url, target: '_blank'
-          blockquote
-            = @items.first.description.truncate(300)
-        .row
-          - @items[2..-1].each do |item|
-            .item-box.col-6.col-lg-4
-              h6
-                = link_to item.title.truncate(60), item.url, target: '_blank'
-              blockquote
-                = item.description.truncate(100)
+        - if @items.blank?
+          | 該当記事なし
+        -else
+          .first-item-box
+            h5
+              = link_to @items.first.title.truncate(60), @items.first.url, target: '_blank'
+            blockquote
+              = @items.first.description.truncate(300)
+          .row
+            - @items[2..-1].each do |item|
+              .item-box.col-6.col-lg-4
+                h6
+                  = link_to item.title.truncate(60), item.url, target: '_blank'
+                blockquote
+                  = item.description.truncate(100)
 
       #sidebar.col-6.col-md-3.sidebar-offcanvas
         .list-group
-          = link_to '全期間', ranking_index_path, class: "list-group-item #{'active' if @item_search.year.blank?}"
+          = link_to '全期間', ranking_index_path(tag_id: @item_search.tag_id), class: "list-group-item #{'active' if @item_search.year.blank?}"
           - Item::SEARCH_YEARS_NUMBER.times do |i|
             - year = (Date.today - i.years).strftime("%Y")
             - if @item_search.year == year
-              = link_to year, ranking_index_path(year: year), class: 'list-group-item active'
+              = link_to year, ranking_index_path(tag_id: @item_search.tag_id, year: year), class: 'list-group-item active'
             - else
-              = link_to year, ranking_index_path(year: year), class: 'list-group-item'
+              = link_to year, ranking_index_path(tag_id: @item_search.tag_id, year: year), class: 'list-group-item'
 
     hr
   footer

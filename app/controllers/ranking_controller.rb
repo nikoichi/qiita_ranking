@@ -10,6 +10,6 @@ class RankingController < ApplicationController
   private
 
   def item_search_params
-    params.permit(:tag_ids, :year)
+    params.permit(:tag_id, :year)
   end
 end

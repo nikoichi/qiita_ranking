@@ -8,8 +8,8 @@ class Item < ApplicationRecord
 
   SEARCH_YEARS_NUMBER = 10
 
-  scope :search_by_qiita_tag_ids, lambda { |qiita_tag_ids|
-    joins(:item_qiita_tags).where('qiita_tag_id IN (?)', qiita_tag_ids) if qiita_tag_ids.present?
+  scope :search_by_tag, lambda { |tag_id|
+    joins(qiita_tags: :tag_qiita_tags).where('tag_id = ?', tag_id) if tag_id.present?
   }
 
   scope :search_by_year, lambda { |year|
