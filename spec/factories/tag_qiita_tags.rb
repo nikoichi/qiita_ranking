@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
-  factory :item_qiita_tag do
-    item nil
+  factory :tag_qiita_tag do
     qiita_tag nil
+    tag nil
   end
 end

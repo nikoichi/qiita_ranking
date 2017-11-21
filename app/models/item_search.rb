@@ -6,7 +6,7 @@ class ItemSearch
   attr_accessor :tag_id, :year, :qiita_user_ids
 
   def search_items
-    Item.search_by_tag(tag_id)
+    Item.search_by_tag_id(tag_id)
         .search_by_year(year)
   end
 end

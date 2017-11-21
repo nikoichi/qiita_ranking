@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   SEARCH_YEARS_NUMBER = 10
 
-  scope :search_by_tag, lambda { |tag_id|
+  scope :search_by_tag_id, lambda { |tag_id|
     joins(qiita_tags: :tag_qiita_tags).where('tag_id = ?', tag_id) if tag_id.present?
   }
 
