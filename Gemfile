@@ -27,15 +27,20 @@ gem 'slim-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara'               # ブラウザでの操作をシミュレートしてテストができる
-  gem 'database_cleaner'       # テスト実行後にDBをクリア
   gem 'debase'
-  gem 'factory_girl_rails'     # テストデータの生成
   gem 'pry-byebug'             # pryでデバックコマンドが使える
   gem 'pry-rails'              # railsでpryが使える
   gem 'rails-erd' # ER図を生成するためのgem
-  gem 'rspec-rails' # RailsでRspecが使える
   gem 'ruby-debug-ide', '0.6.1.beta9'
+end
+
+group :test do
+  gem 'capybara'               # ブラウザでの操作をシミュレートしてテストができる
+  gem 'database_cleaner'       # テスト実行後にDBをクリア
+  gem 'factory_girl_rails'     # テストデータの生成
+  gem 'rails-controller-testing'
+  gem 'rspec-rails' # RailsでRspecが使える
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
