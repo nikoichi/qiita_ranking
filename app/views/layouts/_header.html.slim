@@ -9,5 +9,4 @@ header
             = category.name
           .dropdown-menu[aria-labelledby="dropdown01"]
             - category.tags.each do |tag|
-              a.dropdown-item[href="#"]
-                = link_to tag.name, ranking_index_path(tag_id: tag.id, year: @item_search.year)
+              = link_to tag.name, ranking_index_path(tag_id: tag.id, year: @item_search.year), class: 'dropdown-item'
