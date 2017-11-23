@@ -3,10 +3,10 @@ header
     ul.navbar-nav.mr-auto
       li.nav-item.active
         = link_to 'Qiitaランキング', root_path, class: 'nav-link'
-      li.nav-item.dropdown
-        - @categories.each do |category|
-          a#dropdown01.nav-link.dropdown-toggle[data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+      - @categories.each.with_index(1) do |category, i|
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle[id="dropdown0#{i}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
             = category.name
-          .dropdown-menu[aria-labelledby="dropdown01"]
+          .dropdown-menu[aria-labelledby="dropdown0#{i}"]
             - category.tags.each do |tag|
               = link_to tag.name, ranking_index_path(tag_id: tag.id, year: @item_search.year), class: 'dropdown-item'
