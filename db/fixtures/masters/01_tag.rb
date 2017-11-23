@@ -16,4 +16,15 @@ Tag.seed do |s|
   s.icon_url = ''
   s.message = 'JavaScript関連をまとめたタグです'
 end
-
+Tag.seed do |s|
+  s.id = 4
+  s.name = '英語'
+  s.icon_url = ''
+  s.message = '英語関連をまとめたタグです'
+end
+Tag.seed do |s|
+  s.id = 5
+  s.name = 'Vim'
+  s.icon_url = ''
+  s.message = 'Vim関連をまとめたタグです'
+end
