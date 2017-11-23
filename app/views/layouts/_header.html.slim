@@ -1,0 +1,13 @@
+header
+  nav.navbar.navbar-expand-md.fixed-top.navbar-dark.bg-dark
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        = link_to 'Qiitaランキング', root_path, class: 'nav-link'
+      li.nav-item.dropdown
+        - @categories.each do |category|
+          a#dropdown01.nav-link.dropdown-toggle[data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+            = category.name
+          .dropdown-menu[aria-labelledby="dropdown01"]
+            - category.tags.each do |tag|
+              a.dropdown-item[href="#"]
+                = link_to tag.name, ranking_index_path(tag_id: tag.id, year: @item_search.year)
