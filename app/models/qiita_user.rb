@@ -2,7 +2,7 @@
 
 class QiitaUser < ApplicationRecord
   belongs_to :organization, optional: true
-  has_many :stocks, through: :qiita_user_stocks, class_name: 'ITem', foreign_key: 'item_id'
+  has_many :stocks, through: :qiita_user_stocks, class_name: 'Item', foreign_key: 'item_id'
 
   def self.update_or_create(response_user)
     qiita_user_params = make_params(response_user)

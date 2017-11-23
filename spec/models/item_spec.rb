@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
+  it { is_expected.to belong_to :qiita_user }
+  it { is_expected.to have_many :item_qiita_tags }
+  it { is_expected.to have_many(:qiita_tags).through(:item_qiita_tags) }
+  # FIXME: 通らない。いつか直す。
+  # it { is_expected.to have_many(:stock_users).through(:qiita_user_stocks) }
+
   shared_examples_for '検索結果にitemを含む' do
     it { is_expected.to include(item) }
   end

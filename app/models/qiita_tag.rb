@@ -3,7 +3,7 @@
 class QiitaTag < ApplicationRecord
   has_many :item_qiita_tags
   has_many :items, through: :item_qiita_tags
-  has_many :tags, through: :tag_qiita_tag
+  has_many :tags, through: :tag_qiita_tags
   has_many :tag_qiita_tags
   RUBY_ID = 1
 
