@@ -29,10 +29,3 @@ main.container[role="main"]
             = link_to year, ranking_index_path(tag_id: @item_search.tag_id, year: year), class: 'list-group-item active'
           - else
             = link_to year, ranking_index_path(tag_id: @item_search.tag_id, year: year), class: 'list-group-item'
-
-  hr
-footer
-  p
-    | © Company 2017
-script
-  | window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')
