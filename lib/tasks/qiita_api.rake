@@ -72,6 +72,7 @@ namespace :qiita_api do
       # 取得済みの投稿数と現在の投稿数を設定。
       previous_items_count = qiita_tag.obtained_item_number || 0
       response = client.list_tag_items(qiita_tag.name, { page: 1, per_page: 1 })
+      # FIXME: Total-Countなくなってる。要修正
       items_total_count = response.headers['Total-Count'].to_i
       # ループ回数設定
       loop_number = (items_total_count - previous_items_count) / Settings.qiita_api.pages_number + 1
@@ -137,10 +138,10 @@ namespace :qiita_api do
     items = QiitaTag.find(args.tag_id).items
     items.each do |item|
       response = client.list_item_stockers(item.qiita_item_id)
-      total_count = response.headers['Total-Count']
+      stocks_count = response.headers['Total-Count']
       # # TODO: 例外処理記載
-      p '【get_stocl_total_counts】'
-      ap StockTotalCount.update_or_create(item.id, total_count)
+      p '【get_stocl_stocks_counts】'
+      ap item.update(stocks_count: stocks_count, stocks_count_updated_at: Time.zone.now)
       ap response.headers
       ap response.status
     end
