@@ -48,27 +48,20 @@ create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=u
   t.string "url", null: false
   t.boolean "is_private", default: false, null: false
   t.text "description"
+  t.integer "likes_count"
+  t.integer "stocks_count"
+  t.datetime "stocks_count_updated_at"
+  t.integer "comments_count"
+  t.integer "reactions_count"
   t.datetime "qiita_created_at", null: false
   t.datetime "qiita_updated_at", null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
   t.datetime "deleted_at"
-  t.integer "comments_count"
-  t.integer "likes_count"
-  t.integer "reactions_count"
   t.index ["qiita_item_id"], name: "index_items_on_qiita_item_id", unique: true
   t.index ["qiita_user_id"], name: "index_items_on_qiita_user_id"
 end
 add_foreign_key "items", "qiita_users"
-
-create_table "like_total_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-  t.integer "like_total_count", null: false
-  t.bigint "item_id", null: false
-  t.datetime "created_at", null: false
-  t.datetime "updated_at", null: false
-  t.index ["item_id"], name: "index_like_total_counts_on_item_id"
-end
-add_foreign_key "like_total_counts", "items"
 
 create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   t.string "name", null: false
