@@ -1,3 +1,14 @@
+// ヘッダー
+.nav-item {
+  .nav-link {
+    color: #fff !important;
+  }
+}
+.nav-item.active {
+  font-weight: bold;
+}
+
+// body
 body {
   margin-top: 70px;
 }
