@@ -135,8 +135,6 @@ namespace :qiita_api do
   desc '指定したタグの投稿のストック数を取得する'
   task :get_stocks_count, ['tag_id'] => :environment do |_task, args|
     items = QiitaTag.find(args.tag_id).items
-    items.each do |item|
-      item.update_stocks_count_and_total_count
-    end
+    items.each(&:update_stocks_count_and_total_count)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Category.seed do |s|
   s.id = 1
   s.name = 'プログラミング言語'

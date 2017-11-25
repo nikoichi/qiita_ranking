@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 CategoryTag.seed do |s|
   s.id = 1
   s.category_id = 1

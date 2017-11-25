@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 TagQiitaTag.seed do |s|
   s.id = 1
   s.tag_id = 2

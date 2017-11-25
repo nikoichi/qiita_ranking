@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Tag.seed do |s|
   s.id = 1
   s.name = 'Ruby on Rails'

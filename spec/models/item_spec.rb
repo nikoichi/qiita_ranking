@@ -23,7 +23,7 @@ RSpec.describe Item, type: :model do
       let!(:tag_qiita_tag) { create(:tag_qiita_tag, tag: tag, qiita_tag: qiita_tag) }
       let(:item) { create(:item) }
       let(:qiita_tag) { create(:qiita_tag, id: 1) }
-      let(:tag) { create(:tag, id: 1)}
+      let(:tag) { create(:tag, id: 1) }
       context 'tag_id検索で一致する場合' do
         let(:tag_id) { 1 }
         it_behaves_like '検索結果にitemを含む'
