@@ -4,7 +4,9 @@ class RankingController < ApplicationController
   def index
     @categories = Category.includes(:tags)
     @item_search = ItemSearch.new(item_search_params)
-    @items = @item_search.search_items.limit(10)
+    # TODO: ソート方法いいね・ストック・合計から選びたい
+    order_option = 'total_count'
+    @items = @item_search.search_items.order(order_option + ' DESC').limit(10)
   end
 
   private
