@@ -7,14 +7,17 @@ main.container[role="main"]
         | 該当記事なし
       -else
         .first-item-box
+          - first_item = @items.first
+          == render 'ranking/counts_box', item: first_item
           h5
-            = link_to @items.first.title.truncate(60), @items.first.url, target: '_blank'
+            = link_to first_item.title.truncate(60), first_item.url, target: '_blank'
           blockquote
-            = @items.first.description.truncate(300)
+            = first_item.description.truncate(300)
         .row
           - if @items.size > 1
             - @items[2..-1].each do |item|
               .item-box.col-6.col-lg-4
+                == render 'ranking/counts_box', item: item
                 h6
                   = link_to item.title.truncate(60), item.url, target: '_blank'
                 blockquote

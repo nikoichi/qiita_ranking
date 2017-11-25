@@ -1,4 +1,13 @@
 .first-item-box {
+  .counts-box {
+    display: flex;
+    .stocks-count {
+
+    }
+    .likes-count {
+
+    }
+  }
   h5 {
     a {
       color: black;
@@ -12,6 +21,15 @@
 }
 
 .item-box {
+  .counts-box {
+    display: flex;
+    .stocks-count {
+
+    }
+    .likes-count {
+
+    }
+  }
   h6 {
     a {
       color: black;
