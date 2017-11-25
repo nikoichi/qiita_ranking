@@ -21,6 +21,7 @@ class Item < ApplicationRecord
     item_params = make_params(response_item)
     item = Item.find_or_initialize_by(qiita_item_id: item_params['qiita_item_id'])
     item.update!(item_params)
+    item.update_stocks_count_and_total_count!
     item
   end
 
@@ -46,7 +47,7 @@ class Item < ApplicationRecord
     response_item
   end
 
-  def update_stocks_count_and_total_count
+  def update_stocks_count_and_total_count!
     stocks_count = QiitaApiTask.get_stocks_count qiita_item_id
     total_count = stocks_count + (likes_count || 0)
     update!(stocks_count: stocks_count,
