@@ -1,5 +1,9 @@
 .counts-box
   .stocks-count
-    = item.stocks_count
+    = item.stocks_count || '?'
+    span
+      | ストック
   .likes-count
-    = item.likes_count
+    = item.likes_count || '?'
+    span
+      | いいね

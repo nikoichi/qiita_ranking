@@ -1,11 +1,14 @@
 .first-item-box {
   .counts-box {
     display: flex;
-    .stocks-count {
-
-    }
-    .likes-count {
-
+    .stocks-count, .likes-count {
+      width: 18%;
+      font-size: 24px;
+      font-weight: 600;
+      color: darkgreen;
+      span {
+        font-size: 70%;
+      }
     }
   }
   h5 {
@@ -23,11 +26,14 @@
 .item-box {
   .counts-box {
     display: flex;
-    .stocks-count {
-
-    }
-    .likes-count {
-
+    .stocks-count, .likes-count {
+      width: 45%;
+      font-size: 20px;
+      font-weight: 600;
+      color: darkgreen;
+      span {
+        font-size: 60%;
+      }
     }
   }
   h6 {
