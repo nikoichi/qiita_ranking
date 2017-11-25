@@ -45,4 +45,12 @@ class Item < ApplicationRecord
     response_item['qiita_tag_ids'] = QiitaTag.get_tag_ids(qiita_tag_names)
     response_item
   end
+
+  def update_stocks_count_and_total_count
+    stocks_count = QiitaApiTask.get_stocks_count qiita_item_id
+    total_count = stocks_count + (likes_count || 0)
+    update!(stocks_count: stocks_count,
+            stocks_count_updated_at: Time.zone.now,
+            total_count: total_count)
+  end
 end

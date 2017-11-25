@@ -133,17 +133,10 @@ namespace :qiita_api do
   end
 
   desc '指定したタグの投稿のストック数を取得する'
-  task :get_stock_total_counts, ['tag_id'] => :environment do |_task, args|
-    client = qiita_client
+  task :get_stocks_count, ['tag_id'] => :environment do |_task, args|
     items = QiitaTag.find(args.tag_id).items
     items.each do |item|
-      response = client.list_item_stockers(item.qiita_item_id)
-      stocks_count = response.headers['Total-Count']
-      # # TODO: 例外処理記載
-      p '【get_stocl_stocks_counts】'
-      ap item.update(stocks_count: stocks_count, stocks_count_updated_at: Time.zone.now)
-      ap response.headers
-      ap response.status
+      item.update_stocks_count_and_total_count
     end
   end
 end
