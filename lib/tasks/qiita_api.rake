@@ -111,8 +111,8 @@ namespace :qiita_api do
       previous_items_count = qiita_user.obtained_item_number || 0
       items_total_count = 0
       # FIXME: あとで100に変える。per_pageも。
-      100.times do |i|
-        response = client.list_user_items(qiita_user.nickname, { page: i + 1, per_page: 100 })
+      1.times do |i|
+        response = client.list_user_items(qiita_user.nickname, { page: i + 1, per_page: 1 })
         response_items = response.body
         response_items.each do |response_item|
           ap Item.update_or_create(response_item)
