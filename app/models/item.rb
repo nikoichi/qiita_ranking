@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   has_many :stock_users, through: :qiita_user_stocks, class_name: 'QiitaUser', foreign_key: 'qiita_user_id'
 
   SEARCH_YEARS_NUMBER = 10
+  DEFAULT_LIKES_COUNT = 0
 
   scope :search_by_tag_id, lambda { |tag_id|
     joins(qiita_tags: :tag_qiita_tags).where('tag_id = ?', tag_id) if tag_id.present?
@@ -49,7 +50,7 @@ class Item < ApplicationRecord
 
   def update_stocks_count_and_total_count!
     stocks_count = QiitaApiTask.get_stocks_count qiita_item_id
-    total_count = stocks_count + (likes_count || 0)
+    total_count = stocks_count + (likes_count || DEFAULT_LIKES_COUNT)
     update!(stocks_count: stocks_count,
             stocks_count_updated_at: Time.zone.now,
             total_count: total_count)
