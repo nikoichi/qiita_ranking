@@ -1,5 +1,22 @@
 # frozen_string_literal: true
 
+app_dir = File.expand_path('../..', __FILE__)
+tmp_dir = "#{app_dir}/tmp"
+
+# 環境変数を指定する。起動時に変数があればそれを見る。無ければテスト環境である"staging"としている
+rails_env = ENV['RAILS_ENV'] || 'staging'
+environment rails_env
+
+# socketでbindする。nginxからsocket経由で接続するため
+bind "unix://#{tmp_dir}/sockets/puma.sock"
+
+# ログ出力ファイルの指定
+stdout_redirect "#{tmp_dir}/logs/puma.stdout.log", "#{tmp_dir}/logs/puma.stderr.log", true
+
+# pidとstateファイルの格納
+pidfile "#{tmp_dir}/pids/puma.pid"
+state_path "#{tmp_dir}/pids/puma.state"
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
