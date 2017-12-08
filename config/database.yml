@@ -4,6 +4,7 @@ default: &default
   charset: utf8mb4
   collation: utf8mb4_general_ci
   pool: 5
+  host: localhost
   username: root
   password:
   socket: /tmp/mysql.sock
@@ -19,3 +20,6 @@ test:
 production:
   <<: *default
   database: qiita_ranking_production
+  host: ENV['RDS_PRODUCTION_HOST']
+  username: ENV['PRODUCTION_DB_USERNAME']
+  passwoerd: ENV['PRODUCTION_DB_PASSWORD']
