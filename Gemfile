@@ -25,6 +25,10 @@ gem 'sass-rails'
 gem 'seed-fu', '~> 2.3'
 gem 'slim-rails'
 
+group :production, :staging do
+  gem 'unicorn'
+end
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'debase'
