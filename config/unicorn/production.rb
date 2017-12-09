@@ -7,8 +7,8 @@ timeout 30
 listen "/tmp/unicorn.sock", :backlog => 64
 pid "/var/www/qiita_ranking/shared/tmp/pids/unicorn.pid"
 
-stderr_path "#{@app_path}/log/unicorn.stderr.log"
-stdout_path "#{@app_path}/log/unicorn.stdout.log"
+stderr_path "#{@app_path}/shared/log/unicorn.stderr.log"
+stdout_path "#{@app_path}/shared/log/unicorn.stdout.log"
 
 before_fork do |server, worker|
   ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
