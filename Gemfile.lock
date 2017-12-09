@@ -369,7 +369,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta2)
   bullet
   byebug
-  capistrano
+  capistrano (~> 3.10.1)
   capistrano-bundler
   capistrano-rails
   capistrano-rbenv
