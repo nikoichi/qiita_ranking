@@ -24,10 +24,7 @@ gem 'sanitize'                 # HTMLタグを除去するために導入
 gem 'sass-rails'
 gem 'seed-fu', '~> 2.3'
 gem 'slim-rails'
-
-group :production, :staging do
-  gem 'unicorn'
-end
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
