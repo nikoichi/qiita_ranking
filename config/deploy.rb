@@ -68,4 +68,4 @@ namespace :deploy do
   end
 end
 
-after 'deploy:migrating', 'deploy:apply_ridgepole'
+# after 'deploy:migrating' , 'deploy:apply_ridgepole'
