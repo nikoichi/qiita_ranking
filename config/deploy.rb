@@ -42,8 +42,11 @@ set :keep_releases, 3
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
+# ridgepole
+set :ridgepole_schema_file, File.join(current_path, '', 'Schemafile')
+after 'deploy:publishing', 'ridgepole:apply'
+
 after 'deploy:publishing', 'deploy:restart'
-# after 'deploy:migrating' , 'deploy:apply_ridgepole'
 
 namespace :deploy do
   desc 'reload the database with seed data'
@@ -54,12 +57,6 @@ namespace :deploy do
           execute :rake, 'db:seed'
         end
       end
-    end
-  end
-
-  task :apply_ridgepole do
-    on primary :ridgepole do
-      invoke 'ridgepole:apply'
     end
   end
 
