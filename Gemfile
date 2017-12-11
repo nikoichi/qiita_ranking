@@ -14,6 +14,7 @@ gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'             # jQueryが使える
 gem 'mysql2'
+gem 'newrelic_rpm'
 gem 'paranoia'
 gem 'puma', '~> 3.7'
 gem 'qiita'                    # RubyでqiitaAPIを使うためのgem
