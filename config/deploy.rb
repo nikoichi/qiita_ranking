@@ -66,5 +66,15 @@ namespace :deploy do
       invoke 'unicorn:restart'
     end
   end
+
+  desc 'Upload secret files'
+  task :upload_secret do
+    on roles(:app) do
+      execute :mkdir, '-p', shared_path.join('config')
+      upload!('config/database.yml', "#{shared_path}/config/database.yml")
+      upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+    end
+  end
+
 end
 
