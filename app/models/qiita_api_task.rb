@@ -2,7 +2,7 @@
 
 class QiitaApiTask
   def self.qiita_client
-    Qiita::Client.new(access_token: ENV['QIITA_ACCESS_TOKEN'])
+    Qiita::Client.new(access_token: Rails.application.secretsa.qiita_access_token)
   end
 
   def self.get_stocks_count(qiita_item_id)
