@@ -25,7 +25,7 @@ class QiitaTag < ApplicationRecord
       qiita_tag = find_by(name: qiita_tag_name)
       # タグがレコードにない場合は作成する
       if qiita_tag.blank?
-        client = Qiita::Client.new(access_token: Rails.application.secretsa.qiita_access_token)
+        client = Qiita::Client.new(access_token: Rails.application.secrets.qiita_access_token)
         response = client.get_tag(qiita_tag_name)
         ap response_tag = response.body
         qiita_tag = update_or_create(response_tag)

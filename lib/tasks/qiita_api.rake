@@ -2,7 +2,7 @@
 
 namespace :qiita_api do
   def qiita_client
-    Qiita::Client.new(access_token: Rails.application.secretsa.qiita_access_token)
+    Qiita::Client.new(access_token: Rails.application.secrets.qiita_access_token)
   end
 
   desc '名前を指定してタグを取得(引数は#で区切って複数記述可)'
