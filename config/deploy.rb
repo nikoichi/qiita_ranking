@@ -14,6 +14,9 @@ set :rbenv_ruby, '2.4.1'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/qiita_ranking"
 
+# vendor/bundleディレクトリにインストール
+set :bundle_path, -> { shared_path.join('vendor/bundle') }
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
