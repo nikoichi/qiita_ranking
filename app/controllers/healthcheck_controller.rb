@@ -3,7 +3,7 @@ class HealthcheckController < ApplicationController
   def index
     @item = Item.limit(1)
 
-    if @items
+    if @item.present?
       head :ok
     else
       head :not_found
