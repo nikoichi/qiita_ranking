@@ -11,6 +11,7 @@ gem 'bootstrap', '~> 4.0.0.beta2'
 gem 'coffee-rails'             # JavaScriptを簡潔に書ける
 gem 'config'
 gem 'dotenv-rails'
+gem 'google-analytics-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'             # jQueryが使える
 gem 'mysql2'
