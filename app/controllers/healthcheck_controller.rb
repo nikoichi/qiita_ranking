@@ -1,5 +1,6 @@
-class HealthcheckController < ApplicationController
+# frozen_string_literal: true
 
+class HealthcheckController < ApplicationController
   def index
     @item = Item.limit(1)
 

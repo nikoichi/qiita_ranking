@@ -31,9 +31,9 @@ gem 'unicorn'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capistrano', '~> 3.10.1'
+  gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
   gem 'capistrano3-ridgepole'
   gem 'capistrano3-unicorn'
   gem 'debase'

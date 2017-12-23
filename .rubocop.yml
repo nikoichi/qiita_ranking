@@ -3,6 +3,11 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   TargetRubyVersion: 2.4
+  Exclude:
+  - "vendor/**/*"
+  - "db/**/*"
+  - 'config/**/*'
+  - 'Capfile'
 
 Rails:
   Enabled: true
